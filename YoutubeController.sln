@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeController", "WinFormsApp1\YoutubeController.csproj", "{F15A0B41-15A8-43ED-B145-6F2A14A70A5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B53AE34A-1926-41EF-958F-FF482A55D614}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F15A0B41-15A8-43ED-B145-6F2A14A70A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15A0B41-15A8-43ED-B145-6F2A14A70A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15A0B41-15A8-43ED-B145-6F2A14A70A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15A0B41-15A8-43ED-B145-6F2A14A70A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16C6CF22-847A-4744-9978-60657CC0D797}
+	EndGlobalSection
+EndGlobal
