@@ -26,15 +26,15 @@ namespace WinFormsApp1
         private string _url;
         private string stitle;
         YouTubeService youtube;
-
-
+        private string channelUrl;
+        // try catch문 추가 , 로그인, 회원가입 회원별로 링크 내역보여주기
         public Form1()
         {
             InitializeComponent();
             youtube = new YouTubeService(new BaseClientService.Initializer//유튜브 연결 알트 + 엔터 
             //도구상자 컨트롤 + 알트 + X 
             {
-                ApiKey = "AIzaSyCqGvTKo2S5K7LWcRT0apfi14dQtGxME6s",//절대 아무도 보여주시면 안됩니다.
+                ApiKey = "AIzaSyBl4Q7dDv1Y0tDnbsn4oBYnFRbvxNMhbV4",//절대 아무도 보여주시면 안됩니다.
             });//유튜브 연결
 
 
@@ -79,13 +79,38 @@ namespace WinFormsApp1
             this.webView21.Source = new System.Uri($"https://www.youtube.com/embed/{this.Id}") ;
             YoutubeAPi();
         }
+        private  int TimeSeconds(string timeStamp)
+        {
+            string[] b = { };
+
+            string t = timeStamp.Replace("PT", String.Empty);
+            int c = timeStamp.IndexOf("M");
+            string test = "";
+            int second = 0;
+            if (c != -1)
+            {
+                b = t.Split("M");
+                second = Convert.ToInt32(b[0]) * 60;
+                test = b[1].Replace("S", String.Empty);
+                second += Convert.ToInt32(test);
+            }
+            else
+            {
+                b = t.Split("S");
+                second = Convert.ToInt32(b[0]);
+            }
+            return second;
+        }
+        private static string TimeString(string timeStamp)
+        {
+            string result = timeStamp.Replace("PT", String.Empty).Replace("M", "분").Replace("S", "초");
+
+            return result;
+        }
         async void YoutubeAPi()
         {
-            SearchResource.ListRequest adress = youtube.Search.List("snippet");//Search snippet 연결
-            adress.Q = textBox1.Text;//해당 단어 주소 검색
-            adress.MaxResults = 1;//몇개까지 검색 
-            SearchListResponse adress_res = await adress.ExecuteAsync();
 
+            
 
             //비동기, 동기 
             //비동기 : 해결 속도 동기 보다 느림, 대신 이 명령어 하고 있을 때 다른 일을 동시에 해결 할 수 있음
@@ -99,7 +124,7 @@ namespace WinFormsApp1
             likeCount.Text = Convert.ToString(countview_res.Items[0].Statistics.LikeCount);
             dislikeCount.Text = Convert.ToString(countview_res.Items[0].Statistics.DislikeCount);
             commentCount.Text = Convert.ToString(countview_res.Items[0].Statistics.CommentCount);
-
+            
 
             // title, description, channelId, chnnelTitle, publichedAt
             VideosResource.ListRequest snippet = youtube.Videos.List("snippet");//Videos statistics 연결
@@ -107,15 +132,27 @@ namespace WinFormsApp1
             VideoListResponse snippet_res = await snippet.ExecuteAsync();
             this.stitle = Convert.ToString(snippet_res.Items[0].Snippet.Title);
             title.Text = this.stitle;
-            descriptionBox.Text ="\n\n"+ Convert.ToString(snippet_res.Items[0].Snippet.Description);
+            descriptionBox.Text ="\n\n"+ Convert.ToString(snippet_res.Items[0].Snippet.Description.Replace("\n", "\r\n"));
+            
             channelTitle.Text = Convert.ToString(snippet_res.Items[0].Snippet.ChannelTitle);
-
-
+            string channelId = snippet_res.Items[0].Snippet.ChannelId;
+            this.channelUrl = "https://www.youtube.com/channel/" + channelId;
             // title, description, channelId, chnnelTitle, publichedAt
             VideosResource.ListRequest contentDetials = youtube.Videos.List("contentDetails");//Videos statistics 연결
             contentDetials.Id = $"{this.Id}";
-            VideoListResponse fileDetails_res = await contentDetials.ExecuteAsync();
-            videoLength.Text = Convert.ToString(fileDetails_res.Items[0].ContentDetails.Duration);
+            VideoListResponse contentDetails_res = await contentDetials.ExecuteAsync();
+            int timeSeconds = TimeSeconds(contentDetails_res.Items[0].ContentDetails.Duration);
+            string timeString = TimeString(contentDetails_res.Items[0].ContentDetails.Duration);
+            videoLength.Text = timeString;
+
+            ChannelsResource.ListRequest yChannnelId = youtube.Channels.List("statistics");
+            yChannnelId.Id = channelId;
+            ChannelListResponse yChnnelId_res = await yChannnelId.ExecuteAsync();
+            // 구독자 수
+            godog.Text = Convert.ToString( yChnnelId_res.Items[0].Statistics.SubscriberCount);
+            //status.embeddable	해야할것
+            trackBar1.Maximum =timeSeconds;
+            
 
         }
 
@@ -180,6 +217,28 @@ namespace WinFormsApp1
              
         }
 
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            int time = trackBar1.Value;
+            int seconds =time % 3600 % 60 ;
+            int minutes = time % 3600 / 60;
+            timeLableSeconds.Text = Convert.ToString(seconds)+"초 :";
+            timeLableMinute.Text = Convert.ToString(minutes)+"분";
+            timeUrlSource.Text = $"https://www.youtube.com/watch?v={this.Id}&t={minutes}m{seconds}s";
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            channelTitle.LinkVisited = true;        
+            System.Diagnostics.Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", channelUrl);
+        }
+
+        private void videoDownloadUrl_Click(object sender, EventArgs e)
+        {
+            string te = $"https://www.ssyoutube.com/watch?v={this.Id}";
+            System.Diagnostics.Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", te);
+        }
     }
     }
+    
