@@ -19,7 +19,7 @@ using System.Windows.Forms;
 namespace WinFormsApp1
 {
 
-    public partial class Form1 : Form
+    public partial class Controller : Form
 
     {
         private string Id;
@@ -28,7 +28,7 @@ namespace WinFormsApp1
         YouTubeService youtube;
         private string channelUrl;
         // try catch문 추가 , 로그인, 회원가입 회원별로 링크 내역보여주기
-        public Form1()
+        public Controller()
         {
             InitializeComponent();
             youtube = new YouTubeService(new BaseClientService.Initializer//유튜브 연결 알트 + 엔터 
