@@ -1,7 +1,7 @@
 ﻿
 namespace WinFormsApp1
 {
-    partial class Controller
+    partial class Form1
     {
         /// <summary>
         ///  Required designer variable.
@@ -58,6 +58,8 @@ namespace WinFormsApp1
             this.channelTitle = new System.Windows.Forms.LinkLabel();
             this.videoDownloadUrl = new System.Windows.Forms.Button();
             this.godog = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -364,11 +366,34 @@ namespace WinFormsApp1
             // godog
             // 
             this.godog.AutoSize = true;
-            this.godog.Location = new System.Drawing.Point(1073, 738);
+            this.godog.Location = new System.Drawing.Point(1351, 92);
             this.godog.Name = "godog";
-            this.godog.Size = new System.Drawing.Size(50, 20);
+            this.godog.Size = new System.Drawing.Size(0, 20);
             this.godog.TabIndex = 31;
-            this.godog.Text = "label7";
+            // 
+            // textBox3
+            // 
+            this.textBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.textBox3.Location = new System.Drawing.Point(1204, 679);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox3.MaxLength = 32766;
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(515, 300);
+            this.textBox3.TabIndex = 33;
+            this.textBox3.Text = "\r\n";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1231, 1032);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 20);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "label7";
             // 
             // Form1
             // 
@@ -377,6 +402,8 @@ namespace WinFormsApp1
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1849, 1061);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.godog);
             this.Controls.Add(this.videoDownloadUrl);
             this.Controls.Add(this.channelTitle);
@@ -450,6 +477,8 @@ namespace WinFormsApp1
         private System.Windows.Forms.LinkLabel channelTitle;
         private System.Windows.Forms.Button videoDownloadUrl;
         private System.Windows.Forms.Label godog;
+        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.Label label7;
     }
 }
 

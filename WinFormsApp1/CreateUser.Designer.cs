@@ -112,7 +112,7 @@ namespace WinFormsApp1
             this.sign1.Size = new System.Drawing.Size(0, 15);
             this.sign1.TabIndex = 9;
             // 
-            // Form2
+            // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,8 +125,9 @@ namespace WinFormsApp1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.idBox);
             this.Controls.Add(this.button1);
-            this.Name = "Form2";
+            this.Name = "CreateUser";
             this.Text = "Create User";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateUser_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

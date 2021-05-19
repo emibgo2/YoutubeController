@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
-using OfficeOpenXml;
+using YoutubeController;
 
 namespace WinFormsApp1
 {
@@ -26,7 +26,7 @@ namespace WinFormsApp1
             public string password;
             public string useUrl;
         }
-        static void createExcel(string desktopPath, string path)
+        public static void createExcel(string desktopPath, string path)
         {
             try{
             
@@ -51,14 +51,15 @@ namespace WinFormsApp1
         static Excel.Application excelApp = null;
         static Excel.Workbook workbook = null;
         static Excel.Worksheet worksheet = null;
-        static int start = 1;static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-          static  string path = Path.Combine(desktopPath, "test.xlsx");
+        static int start = 1;
+        static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        static  string path = Path.Combine(desktopPath, "test.xlsx");
         private void Create_User()
         {
 
             try
             {
-
+                
 
                 excelApp = new Excel.Application();
                 workbook = excelApp.Workbooks.Open(path);
@@ -69,7 +70,7 @@ namespace WinFormsApp1
 
                 worksheet.Cells[start, 1] = idBox.Text;
                 worksheet.Cells[start, 2] = passwordBox.Text;
-                worksheet.Cells[start, 3] = "d";
+                worksheet.Cells[start, 3] = "없음";
                 worksheet.Columns.AutoFit(); // 열 너비 자동 맞춤
                 workbook.SaveAs(path, Excel.XlFileFormat.xlWorkbookDefault); // 엑셀 파일 저장
 
@@ -90,7 +91,7 @@ namespace WinFormsApp1
       
 
         }
-        static void ReleaseObject(object obj)
+        public static void ReleaseObject(object obj)
         {
             try
             {
@@ -111,6 +112,8 @@ namespace WinFormsApp1
                 GC.Collect();
             }
         }
+        
+
         private void Form2_Load(object sender, EventArgs e)
         {
             FileInfo fi = new FileInfo(path);
@@ -118,6 +121,15 @@ namespace WinFormsApp1
             {
                 createExcel(desktopPath,path);
             }
+        }
+
+        private void CreateUser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Visible = false;
+            MainForm s = new MainForm();
+            s.ShowDialog();
+            e.Cancel = true;
+
         }
     }
 }

@@ -15,20 +15,27 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YoutubeController;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WinFormsApp1
 {
 
-    public partial class Controller : Form
+    public partial class Form1 : Form
 
     {
+        static Excel.Application excelApp = null;
+        static Excel.Workbook workbook = null;
+        static Excel.Worksheet worksheet = null;
+
+        private static string userNumber;
         private string Id;
         private string _url;
         private string stitle;
         YouTubeService youtube;
         private string channelUrl;
         // try catch문 추가 , 로그인, 회원가입 회원별로 링크 내역보여주기
-        public Controller()
+        public Form1()
         {
             InitializeComponent();
             youtube = new YouTubeService(new BaseClientService.Initializer//유튜브 연결 알트 + 엔터 
@@ -36,10 +43,10 @@ namespace WinFormsApp1
             {
                 ApiKey = "AIzaSyBl4Q7dDv1Y0tDnbsn4oBYnFRbvxNMhbV4",//절대 아무도 보여주시면 안됩니다.
             });//유튜브 연결
-
-
+            string a =textBox3.Text;
 
         }
+
 
 
 
@@ -65,7 +72,33 @@ namespace WinFormsApp1
             }
           }
 
+        static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        static string path = Path.Combine(desktopPath, "test.xlsx");
 
+        private void ExcelLoad()
+        {
+
+
+            try
+            {
+
+
+                excelApp = new Excel.Application();
+                workbook = excelApp.Workbooks.Open(path);
+                worksheet = workbook.Worksheets.get_Item(1) as Excel.Worksheet;
+
+                int t= Convert.ToInt32(label7.Text);
+
+                textBox3.Text = Convert.ToString( (worksheet.Cells[t, 3] as Excel.Range).Value2);
+      
+                worksheet.Columns.AutoFit(); // 열 너비 자동 맞춤
+                
+                workbook.Close(true);
+                excelApp.Quit();
+            }
+            finally { CreateUser.ReleaseObject(worksheet); CreateUser.ReleaseObject(workbook); CreateUser.ReleaseObject(excelApp); }
+            
+        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -77,7 +110,7 @@ namespace WinFormsApp1
             this.pictureBox1.Image = GetUrlImage(_url);
             this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             this.webView21.Source = new System.Uri($"https://www.youtube.com/embed/{this.Id}") ;
-            YoutubeAPi();
+            
         }
         private  int TimeSeconds(string timeStamp)
         {
@@ -107,6 +140,7 @@ namespace WinFormsApp1
 
             return result;
         }
+        /*
         async void YoutubeAPi()
         {
 
@@ -133,9 +167,15 @@ namespace WinFormsApp1
             this.stitle = Convert.ToString(snippet_res.Items[0].Snippet.Title);
             title.Text = this.stitle;
             descriptionBox.Text ="\n\n"+ Convert.ToString(snippet_res.Items[0].Snippet.Description.Replace("\n", "\r\n"));
-            
-            channelTitle.Text = Convert.ToString(snippet_res.Items[0].Snippet.ChannelTitle);
+            ChannelsResource.ListRequest yChannnelId = youtube.Channels.List("statistics");
             string channelId = snippet_res.Items[0].Snippet.ChannelId;
+            yChannnelId.Id = channelId;
+            ChannelListResponse yChnnelId_res = await yChannnelId.ExecuteAsync();
+            // 구독자 수
+            godog.Text = " 채널 구독자 수: "+Convert.ToString( yChnnelId_res.Items[0].Statistics.SubscriberCount)+" 명";
+
+            channelTitle.Text = Convert.ToString(snippet_res.Items[0].Snippet.ChannelTitle);
+            
             this.channelUrl = "https://www.youtube.com/channel/" + channelId;
             // title, description, channelId, chnnelTitle, publichedAt
             VideosResource.ListRequest contentDetials = youtube.Videos.List("contentDetails");//Videos statistics 연결
@@ -145,17 +185,14 @@ namespace WinFormsApp1
             string timeString = TimeString(contentDetails_res.Items[0].ContentDetails.Duration);
             videoLength.Text = timeString;
 
-            ChannelsResource.ListRequest yChannnelId = youtube.Channels.List("statistics");
-            yChannnelId.Id = channelId;
-            ChannelListResponse yChnnelId_res = await yChannnelId.ExecuteAsync();
-            // 구독자 수
-            godog.Text = Convert.ToString( yChnnelId_res.Items[0].Statistics.SubscriberCount);
+
             //status.embeddable	해야할것
             trackBar1.Maximum =timeSeconds;
             
 
         }
 
+        */
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -214,7 +251,17 @@ namespace WinFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            ExcelLoad();
              
+        }
+        public void EventMethod(string str)
+        {
+            textBox3.Text = str.ToString();
+        }
+
+        private void DataGet(string item1)
+        {
+            textBox3.Text = item1;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -238,6 +285,13 @@ namespace WinFormsApp1
         {
             string te = $"https://www.ssyoutube.com/watch?v={this.Id}";
             System.Diagnostics.Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", te);
+        }
+
+        
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
     }
