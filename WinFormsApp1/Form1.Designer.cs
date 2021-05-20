@@ -60,6 +60,7 @@ namespace WinFormsApp1
             this.godog = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.addUrlButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -80,9 +81,9 @@ namespace WinFormsApp1
             this.button1.Location = new System.Drawing.Point(316, 510);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 34);
+            this.button1.Size = new System.Drawing.Size(86, 49);
             this.button1.TabIndex = 1;
-            this.button1.Text = "URL Serching";
+            this.button1.Text = "URL\r\n검색";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -119,18 +120,18 @@ namespace WinFormsApp1
             this.webView21.Margin = new System.Windows.Forms.Padding(4);
             this.webView21.Name = "webView21";
             this.webView21.Size = new System.Drawing.Size(823, 383);
-            this.webView21.Source = new System.Uri("https://www.youtube.com/embed/dBR7Q-thmd8", System.UriKind.Absolute);
+            this.webView21.Source = new System.Uri("https://www.youtube.com/embed/5ANp9dGduEU", System.UriKind.Absolute);
             this.webView21.TabIndex = 6;
             this.webView21.ZoomFactor = 1D;
             // 
             // ImageDownload
             // 
-            this.ImageDownload.Location = new System.Drawing.Point(475, 510);
+            this.ImageDownload.Location = new System.Drawing.Point(440, 510);
             this.ImageDownload.Margin = new System.Windows.Forms.Padding(4);
             this.ImageDownload.Name = "ImageDownload";
-            this.ImageDownload.Size = new System.Drawing.Size(145, 34);
+            this.ImageDownload.Size = new System.Drawing.Size(86, 49);
             this.ImageDownload.TabIndex = 7;
-            this.ImageDownload.Text = "섬네임 다운로드";
+            this.ImageDownload.Text = "섬네일 \r\n다운로드";
             this.ImageDownload.UseVisualStyleBackColor = true;
             this.ImageDownload.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -355,11 +356,11 @@ namespace WinFormsApp1
             // 
             // videoDownloadUrl
             // 
-            this.videoDownloadUrl.Location = new System.Drawing.Point(634, 510);
+            this.videoDownloadUrl.Location = new System.Drawing.Point(568, 510);
             this.videoDownloadUrl.Name = "videoDownloadUrl";
-            this.videoDownloadUrl.Size = new System.Drawing.Size(140, 34);
+            this.videoDownloadUrl.Size = new System.Drawing.Size(86, 49);
             this.videoDownloadUrl.TabIndex = 30;
-            this.videoDownloadUrl.Text = "비디오 다운로드";
+            this.videoDownloadUrl.Text = "비디오 \r\n다운로드";
             this.videoDownloadUrl.UseVisualStyleBackColor = true;
             this.videoDownloadUrl.Click += new System.EventHandler(this.videoDownloadUrl_Click);
             // 
@@ -395,6 +396,16 @@ namespace WinFormsApp1
             this.label7.TabIndex = 34;
             this.label7.Text = "label7";
             // 
+            // addUrlButton
+            // 
+            this.addUrlButton.Location = new System.Drawing.Point(688, 510);
+            this.addUrlButton.Name = "addUrlButton";
+            this.addUrlButton.Size = new System.Drawing.Size(86, 49);
+            this.addUrlButton.TabIndex = 35;
+            this.addUrlButton.Text = "URL 추가";
+            this.addUrlButton.UseVisualStyleBackColor = true;
+            this.addUrlButton.Click += new System.EventHandler(this.addUrlButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -402,6 +413,7 @@ namespace WinFormsApp1
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1849, 1061);
+            this.Controls.Add(this.addUrlButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.godog);
@@ -479,6 +491,7 @@ namespace WinFormsApp1
         private System.Windows.Forms.Label godog;
         public System.Windows.Forms.TextBox textBox3;
         public System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button addUrlButton;
     }
 }
 

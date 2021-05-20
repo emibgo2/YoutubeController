@@ -87,9 +87,6 @@ namespace WinFormsApp1
             }
             else
                 sign1.Text = "ID와 Password를 입력하세요";
-
-      
-
         }
         public static void ReleaseObject(object obj)
         {

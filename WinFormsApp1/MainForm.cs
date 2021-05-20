@@ -63,8 +63,9 @@ namespace YoutubeController
                                 this.Visible = false;
                                 Form1 s = new Form1();
                                 s.label7.Text = Convert.ToString(row);
-
+                                
                                 s.ShowDialog();
+                                Close();
                                 break;
                             }
                             else
@@ -84,6 +85,10 @@ namespace YoutubeController
                 workBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookDefault);
                 workBook.Close(true);
                 excelApp.Quit();
+            }
+            catch
+            {
+                Close();
             }
             finally
             {

@@ -87,16 +87,19 @@ namespace WinFormsApp1
                 workbook = excelApp.Workbooks.Open(path);
                 worksheet = workbook.Worksheets.get_Item(1) as Excel.Worksheet;
 
-                int t= Convert.ToInt32(label7.Text);
+                int t = Convert.ToInt32(label7.Text);
 
-                textBox3.Text = Convert.ToString( (worksheet.Cells[t, 3] as Excel.Range).Value2);
-      
+                string userUrl= Convert.ToString( (worksheet.Cells[t, 3] as Excel.Range).Value2).Replace(",", "\r\n"); ;
+                textBox3.Text = userUrl;
+
+
                 worksheet.Columns.AutoFit(); // 열 너비 자동 맞춤
                 
                 workbook.Close(true);
                 excelApp.Quit();
             }
             finally { CreateUser.ReleaseObject(worksheet); CreateUser.ReleaseObject(workbook); CreateUser.ReleaseObject(excelApp); }
+
             
         }
 
@@ -110,6 +113,7 @@ namespace WinFormsApp1
             this.pictureBox1.Image = GetUrlImage(_url);
             this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             this.webView21.Source = new System.Uri($"https://www.youtube.com/embed/{this.Id}") ;
+            YoutubeAPi();
             
         }
         private  int TimeSeconds(string timeStamp)
@@ -140,7 +144,7 @@ namespace WinFormsApp1
 
             return result;
         }
-        /*
+       
         async void YoutubeAPi()
         {
 
@@ -192,7 +196,6 @@ namespace WinFormsApp1
 
         }
 
-        */
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -293,6 +296,29 @@ namespace WinFormsApp1
         {
             
         }
+
+        private void addUrlButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int t = Convert.ToInt32(label7.Text);
+                excelApp = new Excel.Application();
+                workbook = excelApp.Workbooks.Open(path);
+                worksheet = workbook.Worksheets.get_Item(1) as Excel.Worksheet;
+                worksheet.Cells[t, 3] = textBox3.Text.Replace("없음",string.Empty) + textBox1.Text+",";
+                textBox3.Text= Convert.ToString(( worksheet.Cells[t, 3] as Excel.Range).Value2).Replace(",","\r\n");
+                worksheet.Columns.AutoFit(); // 열 너비 자동 맞춤
+                workbook.SaveAs(path, Excel.XlFileFormat.xlWorkbookDefault); // 엑셀 파일 저장
+                workbook.Close(true);
+                excelApp.Quit();
+            }
+            finally
+            {
+                CreateUser.ReleaseObject(worksheet); CreateUser.ReleaseObject(workbook); CreateUser.ReleaseObject(excelApp);
+
+            }
+        }
     }
     }
+
     
