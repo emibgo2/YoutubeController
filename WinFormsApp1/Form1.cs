@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -73,7 +74,7 @@ namespace WinFormsApp1
           }
 
         static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        static string path = Path.Combine(desktopPath, "test.xlsx");
+        static string path = Path.Combine(desktopPath, "User.xlsx");
 
         private void ExcelLoad()
         {
@@ -317,6 +318,12 @@ namespace WinFormsApp1
                 CreateUser.ReleaseObject(worksheet); CreateUser.ReleaseObject(workbook); CreateUser.ReleaseObject(excelApp);
 
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+            Close();
         }
     }
     }

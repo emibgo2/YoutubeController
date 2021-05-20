@@ -37,7 +37,7 @@ namespace YoutubeController
             try
             {
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string path = Path.Combine(desktopPath, "test.xlsx");
+                string path = Path.Combine(desktopPath, "User.xlsx");
 
                 excelApp = new Excel.Application();
                 workBook = excelApp.Workbooks.Open(path);
@@ -64,9 +64,10 @@ namespace YoutubeController
                                 Form1 s = new Form1();
                                 s.label7.Text = Convert.ToString(row);
                                 
-                                s.ShowDialog();
-                                Close();
+                                s.ShowDialog();                               
                                 break;
+                                break;
+                                Close();
                             }
                             else
                             {
@@ -98,7 +99,7 @@ namespace YoutubeController
             }
         }
         static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        static string path = Path.Combine(desktopPath, "test.xlsx");
+        static string path = Path.Combine(desktopPath, "User.xlsx");
         public static void ReleaseObject(object obj)
         {
             try

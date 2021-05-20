@@ -53,7 +53,7 @@ namespace WinFormsApp1
         static Excel.Worksheet worksheet = null;
         static int start = 1;
         static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        static  string path = Path.Combine(desktopPath, "test.xlsx");
+        static  string path = Path.Combine(desktopPath, "User.xlsx");
         private void Create_User()
         {
 
@@ -84,9 +84,14 @@ namespace WinFormsApp1
             if (idBox.Text != "" || passwordBox.Text != "")
             {
                 Create_User();
+                this.Visible = false;
+                MainForm s = new MainForm();
+                s.ShowDialog();
+                Close();
             }
             else
                 sign1.Text = "ID와 Password를 입력하세요";
+
         }
         public static void ReleaseObject(object obj)
         {
@@ -125,7 +130,7 @@ namespace WinFormsApp1
             this.Visible = false;
             MainForm s = new MainForm();
             s.ShowDialog();
-            e.Cancel = true;
+            Close();
 
         }
     }
