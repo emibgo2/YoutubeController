@@ -21,11 +21,8 @@ namespace WinFormsApp1
             InitializeComponent();
              
         }
-        class User {
-            public string id;
-            public string password;
-            public string useUrl;
-        }
+
+        // User.xlsx 파일이 존재 하지 않을 시 해당 양식에 맞춰 엑셀 파일 생성
         public static void createExcel(string desktopPath, string path)
         {
             try{
@@ -54,6 +51,8 @@ namespace WinFormsApp1
         static int start = 1;
         static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         static  string path = Path.Combine(desktopPath, "User.xlsx");
+
+        // User.xlsx 파일에 새로운 사용자 정보를 넣어서 추가
         private void Create_User()
         {
 
@@ -79,18 +78,20 @@ namespace WinFormsApp1
             }
             finally { ReleaseObject(worksheet); ReleaseObject(workbook); ReleaseObject(excelApp); }
         }
+        // ID와 Password가 하나도 없으면 생성하지 못하게 막고 아닐시 생성 해주는 메소드
         private void button1_Click(object sender, EventArgs e)
         {
-            if (idBox.Text != "" || passwordBox.Text != "")
+            if (idBox.Text == "" || passwordBox.Text == "")
+            { sign1.Text = "ID와 Password를 입력하세요";
+            }
+            else
             {
                 Create_User();
                 this.Visible = false;
                 MainForm s = new MainForm();
                 s.ShowDialog();
                 Close();
-            }
-            else
-                sign1.Text = "ID와 Password를 입력하세요";
+            }    
 
         }
         public static void ReleaseObject(object obj)
@@ -116,6 +117,7 @@ namespace WinFormsApp1
         }
         
 
+        // 해당 컴퓨터에 User.xlsx가 없을 시 생성해주는 메소드
         private void Form2_Load(object sender, EventArgs e)
         {
             FileInfo fi = new FileInfo(path);
@@ -125,6 +127,7 @@ namespace WinFormsApp1
             }
         }
 
+        // Create User 폼을 닫으면 Main Form으로 가도록 설정
         private void CreateUser_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Visible = false;

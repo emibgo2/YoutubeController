@@ -19,7 +19,8 @@ namespace YoutubeController
     public partial class MainForm : Form
     {
 
-
+        static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        static string path = Path.Combine(desktopPath, "User.xlsx");
         static Excel.Application excelApp = null;
         static Excel.Workbook workBook = null;
         static Excel.Worksheet workSheet = null;
@@ -31,13 +32,12 @@ namespace YoutubeController
         }
 
 
+        // User.xslx에 들어있는 ID와 Password의 동일 유무를 파악 하여 동일 하지 않을시 로그인 불가 동일시 Login 진행
         private void button1_Click(object sender, EventArgs e)
         {
             this.data=loginidBox.Text;
             try
             {
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string path = Path.Combine(desktopPath, "User.xlsx");
 
                 excelApp = new Excel.Application();
                 workBook = excelApp.Workbooks.Open(path);
@@ -98,8 +98,7 @@ namespace YoutubeController
                 ReleaseObject(excelApp);
             }
         }
-        static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        static string path = Path.Combine(desktopPath, "User.xlsx");
+        
         public static void ReleaseObject(object obj)
         {
             try
@@ -130,6 +129,7 @@ namespace YoutubeController
             s.ShowDialog();
         }
 
+        // MainForm 이 로드 되면서 바탕화면에 User.xlsx 파일 유무를 파악후에 없으면 생성하고 사용자에게 유저를 생성할 것을 유도
         private void MainForm_Load(object sender, EventArgs e)
         {
             FileInfo fi = new FileInfo(path);

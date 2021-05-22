@@ -30,7 +30,7 @@ namespace WinFormsApp1
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.urlSerching = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
@@ -74,25 +74,25 @@ namespace WinFormsApp1
             this.pictureBox1.Size = new System.Drawing.Size(823, 436);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+
             // 
-            // button1
+            // urlSerching
             // 
-            this.button1.Location = new System.Drawing.Point(316, 510);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 49);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "URL\r\n검색";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.urlSerching.Location = new System.Drawing.Point(316, 510);
+            this.urlSerching.Margin = new System.Windows.Forms.Padding(4);
+            this.urlSerching.Name = "urlSerching";
+            this.urlSerching.Size = new System.Drawing.Size(86, 49);
+            this.urlSerching.TabIndex = 1;
+            this.urlSerching.Text = "URL\r\n검색";
+            this.urlSerching.UseVisualStyleBackColor = true;
+            this.urlSerching.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(316, 475);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(458, 27);
+            this.textBox1.Size = new System.Drawing.Size(458, 32);
             this.textBox1.TabIndex = 2;
             // 
             // label1
@@ -101,7 +101,7 @@ namespace WinFormsApp1
             this.label1.Location = new System.Drawing.Point(247, 479);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 20);
+            this.label1.Size = new System.Drawing.Size(46, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "URL";
             // 
@@ -157,7 +157,7 @@ namespace WinFormsApp1
             this.viewCount.Location = new System.Drawing.Point(1194, 140);
             this.viewCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.viewCount.Name = "viewCount";
-            this.viewCount.Size = new System.Drawing.Size(0, 21);
+            this.viewCount.Size = new System.Drawing.Size(0, 28);
             this.viewCount.TabIndex = 9;
             // 
             // title
@@ -167,7 +167,7 @@ namespace WinFormsApp1
             this.title.Location = new System.Drawing.Point(1194, 49);
             this.title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(0, 21);
+            this.title.Size = new System.Drawing.Size(0, 28);
             this.title.TabIndex = 10;
             // 
             // videoLength
@@ -177,7 +177,7 @@ namespace WinFormsApp1
             this.videoLength.Location = new System.Drawing.Point(1607, 537);
             this.videoLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.videoLength.Name = "videoLength";
-            this.videoLength.Size = new System.Drawing.Size(110, 21);
+            this.videoLength.Size = new System.Drawing.Size(136, 28);
             this.videoLength.TabIndex = 12;
             this.videoLength.Text = "Video Length";
             // 
@@ -188,7 +188,7 @@ namespace WinFormsApp1
             this.likeCount.Location = new System.Drawing.Point(1194, 184);
             this.likeCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.likeCount.Name = "likeCount";
-            this.likeCount.Size = new System.Drawing.Size(0, 21);
+            this.likeCount.Size = new System.Drawing.Size(0, 28);
             this.likeCount.TabIndex = 13;
             // 
             // label3
@@ -198,7 +198,7 @@ namespace WinFormsApp1
             this.label3.Location = new System.Drawing.Point(1062, 49);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 21);
+            this.label3.Size = new System.Drawing.Size(103, 28);
             this.label3.TabIndex = 14;
             this.label3.Text = "영상 제목:";
             // 
@@ -209,7 +209,7 @@ namespace WinFormsApp1
             this.label4.Location = new System.Drawing.Point(1062, 92);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 21);
+            this.label4.Size = new System.Drawing.Size(76, 28);
             this.label4.TabIndex = 15;
             this.label4.Text = "채널명:";
             // 
@@ -221,7 +221,7 @@ namespace WinFormsApp1
             this.label5.Location = new System.Drawing.Point(1062, 140);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 21);
+            this.label5.Size = new System.Drawing.Size(76, 28);
             this.label5.TabIndex = 16;
             this.label5.Text = "조회수:";
             // 
@@ -232,7 +232,7 @@ namespace WinFormsApp1
             this.label6.Location = new System.Drawing.Point(1062, 184);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 21);
+            this.label6.Size = new System.Drawing.Size(103, 28);
             this.label6.TabIndex = 17;
             this.label6.Text = "좋아요 수:";
             // 
@@ -243,7 +243,7 @@ namespace WinFormsApp1
             this.label2.Location = new System.Drawing.Point(1062, 227);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 21);
+            this.label2.Size = new System.Drawing.Size(103, 28);
             this.label2.TabIndex = 18;
             this.label2.Text = "싫어요 수:";
             // 
@@ -254,7 +254,7 @@ namespace WinFormsApp1
             this.dislikeCount.Location = new System.Drawing.Point(1194, 227);
             this.dislikeCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dislikeCount.Name = "dislikeCount";
-            this.dislikeCount.Size = new System.Drawing.Size(0, 21);
+            this.dislikeCount.Size = new System.Drawing.Size(0, 28);
             this.dislikeCount.TabIndex = 19;
             // 
             // commentCount
@@ -264,7 +264,7 @@ namespace WinFormsApp1
             this.commentCount.Location = new System.Drawing.Point(1194, 271);
             this.commentCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.commentCount.Name = "commentCount";
-            this.commentCount.Size = new System.Drawing.Size(0, 21);
+            this.commentCount.Size = new System.Drawing.Size(0, 28);
             this.commentCount.TabIndex = 20;
             // 
             // label8
@@ -274,7 +274,7 @@ namespace WinFormsApp1
             this.label8.Location = new System.Drawing.Point(1062, 271);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 21);
+            this.label8.Size = new System.Drawing.Size(83, 28);
             this.label8.TabIndex = 21;
             this.label8.Text = "댓글 수:";
             // 
@@ -286,7 +286,7 @@ namespace WinFormsApp1
             this.description.Location = new System.Drawing.Point(1204, 312);
             this.description.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(143, 21);
+            this.description.Size = new System.Drawing.Size(175, 28);
             this.description.TabIndex = 22;
             this.description.Text = "Video Description";
             // 
@@ -297,7 +297,7 @@ namespace WinFormsApp1
             this.label9.Location = new System.Drawing.Point(1062, 315);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 21);
+            this.label9.Size = new System.Drawing.Size(130, 28);
             this.label9.TabIndex = 23;
             this.label9.Text = "동영상 설명 :";
             // 
@@ -309,7 +309,7 @@ namespace WinFormsApp1
             this.trackBar1.Location = new System.Drawing.Point(1194, 562);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(525, 45);
+            this.trackBar1.Size = new System.Drawing.Size(525, 56);
             this.trackBar1.TabIndex = 25;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
@@ -320,7 +320,7 @@ namespace WinFormsApp1
             this.timeLableMinute.Location = new System.Drawing.Point(1530, 539);
             this.timeLableMinute.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.timeLableMinute.Name = "timeLableMinute";
-            this.timeLableMinute.Size = new System.Drawing.Size(24, 20);
+            this.timeLableMinute.Size = new System.Drawing.Size(31, 25);
             this.timeLableMinute.TabIndex = 26;
             this.timeLableMinute.Text = "분";
             // 
@@ -331,7 +331,7 @@ namespace WinFormsApp1
             this.timeLableSeconds.Location = new System.Drawing.Point(1562, 539);
             this.timeLableSeconds.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.timeLableSeconds.Name = "timeLableSeconds";
-            this.timeLableSeconds.Size = new System.Drawing.Size(24, 20);
+            this.timeLableSeconds.Size = new System.Drawing.Size(31, 25);
             this.timeLableSeconds.TabIndex = 27;
             this.timeLableSeconds.Text = "초";
             // 
@@ -340,7 +340,7 @@ namespace WinFormsApp1
             this.timeUrlSource.Location = new System.Drawing.Point(1204, 596);
             this.timeUrlSource.Name = "timeUrlSource";
             this.timeUrlSource.ReadOnly = true;
-            this.timeUrlSource.Size = new System.Drawing.Size(513, 27);
+            this.timeUrlSource.Size = new System.Drawing.Size(513, 32);
             this.timeUrlSource.TabIndex = 28;
             // 
             // channelTitle
@@ -350,7 +350,7 @@ namespace WinFormsApp1
             this.channelTitle.LinkColor = System.Drawing.Color.MediumBlue;
             this.channelTitle.Location = new System.Drawing.Point(1194, 93);
             this.channelTitle.Name = "channelTitle";
-            this.channelTitle.Size = new System.Drawing.Size(0, 20);
+            this.channelTitle.Size = new System.Drawing.Size(0, 25);
             this.channelTitle.TabIndex = 29;
             this.channelTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -369,7 +369,7 @@ namespace WinFormsApp1
             this.godog.AutoSize = true;
             this.godog.Location = new System.Drawing.Point(1351, 92);
             this.godog.Name = "godog";
-            this.godog.Size = new System.Drawing.Size(0, 20);
+            this.godog.Size = new System.Drawing.Size(0, 25);
             this.godog.TabIndex = 31;
             // 
             // textBox3
@@ -385,14 +385,13 @@ namespace WinFormsApp1
             this.textBox3.Size = new System.Drawing.Size(515, 300);
             this.textBox3.TabIndex = 33;
             this.textBox3.Text = "\r\n";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(1231, 1032);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 20);
+            this.label7.Size = new System.Drawing.Size(63, 25);
             this.label7.TabIndex = 34;
             this.label7.Text = "label7";
             // 
@@ -408,11 +407,11 @@ namespace WinFormsApp1
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1849, 1061);
+            this.ClientSize = new System.Drawing.Size(1849, 1055);
             this.Controls.Add(this.addUrlButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox3);
@@ -443,10 +442,10 @@ namespace WinFormsApp1
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.urlSerching);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("맑은 고딕", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MinimumSize = new System.Drawing.Size(1000, 1038);
+            this.MinimumSize = new System.Drawing.Size(1000, 1028);
             this.Name = "Form1";
             this.Text = "Youtube Controller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -462,7 +461,7 @@ namespace WinFormsApp1
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button urlSerching;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.VScrollBar vScrollBar1;
