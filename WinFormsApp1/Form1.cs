@@ -112,22 +112,27 @@ namespace WinFormsApp1
         // URL Serching Button 클릭시 진행되는 메소드
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
-            WebBrowser webBrowser = new WebBrowser();
-            string[] eid = textBox1.Text.Substring(32).Split('&');
-            // 유튜브의 동영상 URL은 기존의 유튜브 기본 URL 에서 각 비디오들 만의 고유번호인 Video Id를 통하여 URL이 생성된다.
-            // URL에서 기본 URL과 Video Id를 구분해주는 법은 https://www.youtube.com/watch?v= 뒤로 오는 문자들이 비디오 ID라고 볼수 있는데
-            // 해당 문자열에서 = 까지의 길이가 32이며 뒤에 &가 있는경우가 있으니 스플릿을 통하여 한번 더 필터링 해준다
-            this.Id =eid[0];
-            this._url = $"https://img.youtube.com/vi/{this.Id}/maxresdefault.jpg"; 
-            // 해당 유튜브 URL에서 vi/와 /maxresdefault.jpg 사이에 비디오 ID를 넣어주면 유튜브 영상 썸네일 사진을 얻을 수 있다.
-            this.pictureBox1.Image = GetUrlImage(_url);
-            // 해당 url에 있는 썸네일 사진을 pictureBox에 삽입
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.webView21.Source = new System.Uri($"https://www.youtube.com/embed/{this.Id}") ;
-            //  컨트롤러에 나오는 유튜브 영상은 HTML과 URL 통해 보여주기 때문에 webView에다가 해당 Video Id가 적힌 URL을 적용
-            YoutubeAPi();
-            
+            try
+            {
+                WebBrowser webBrowser = new WebBrowser();
+                string[] eid = textBox1.Text.Substring(32).Split('&');
+                // 유튜브의 동영상 URL은 기존의 유튜브 기본 URL 에서 각 비디오들 만의 고유번호인 Video Id를 통하여 URL이 생성된다.
+                // URL에서 기본 URL과 Video Id를 구분해주는 법은 https://www.youtube.com/watch?v= 뒤로 오는 문자들이 비디오 ID라고 볼수 있는데
+                // 해당 문자열에서 = 까지의 길이가 32이며 뒤에 &가 있는경우가 있으니 스플릿을 통하여 한번 더 필터링 해준다
+                this.Id = eid[0];
+                this._url = $"https://img.youtube.com/vi/{this.Id}/maxresdefault.jpg";
+                // 해당 유튜브 URL에서 vi/와 /maxresdefault.jpg 사이에 비디오 ID를 넣어주면 유튜브 영상 썸네일 사진을 얻을 수 있다.
+                this.pictureBox1.Image = GetUrlImage(_url);
+                // 해당 url에 있는 썸네일 사진을 pictureBox에 삽입
+                this.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.webView21.Source = new System.Uri($"https://www.youtube.com/embed/{this.Id}");
+                //  컨트롤러에 나오는 유튜브 영상은 HTML과 URL 통해 보여주기 때문에 webView에다가 해당 Video Id가 적힌 URL을 적용
+                YoutubeAPi();
+            }
+            catch
+            {
+                url_status.Text = "잘못된 URL 입니다.";
+            }
         }
 
         // YouTube에서 제공하는 API에서 비디오의 영상 시간을 PT분M초S 형식으로 제공하기 때문에 이를 초 단위로 환산하여 int 값으로 넘겨주는 메소드
